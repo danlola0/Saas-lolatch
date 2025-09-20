@@ -47,21 +47,21 @@ const ContactSection: React.FC = () => {
                   <Mail className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600">contact@saasplatform.com</div>
+                    <div className="text-gray-600">daniellolayongo@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Phone className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <div className="font-medium text-gray-900">Téléphone</div>
-                    <div className="text-gray-600">+33 1 23 45 67 89</div>
+                    <div className="text-gray-600">+243 823263196</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <div className="font-medium text-gray-900">Adresse</div>
-                    <div className="text-gray-600">123 Rue de la Tech<br />75001 Paris, France</div>
+                    <div className="text-gray-600">Commune lemba</div>
                   </div>
                 </div>
               </div>

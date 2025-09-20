@@ -6,6 +6,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 // Lazy load pages
 const HomePage = lazy(() => import('./pages/public/HomePage'));
+const PricingPage = lazy(() => import('./pages/public/PricingPage'));
+const QuotePage = lazy(() => import('./pages/public/QuotePage'));
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/auth/ForgotPasswordPage'));
@@ -18,6 +20,8 @@ const PharmacyApp = lazy(() => import('./pages/apps/PharmacyApp'));
 const SchoolApp = lazy(() => import('./pages/apps/SchoolApp'));
 const RestaurantApp = lazy(() => import('./pages/apps/RestaurantApp'));
 const StockApp = lazy(() => import('./pages/apps/StockApp'));
+const ComptaFacileApp = lazy(() => import('./pages/apps/ComptaFacileApp'));
+const QuincaillerieProApp = lazy(() => import('./pages/apps/QuincaillerieProApp'));
 
 // Composant pour protéger les routes privées
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -42,6 +46,16 @@ function App() {
               <Route path="/" element={
                 <PublicLayout>
                   <HomePage />
+                </PublicLayout>
+              } />
+              <Route path="/pricing" element={
+                <PublicLayout>
+                  <PricingPage />
+                </PublicLayout>
+              } />
+              <Route path="/devis" element={
+                <PublicLayout>
+                  <QuotePage />
                 </PublicLayout>
               } />
               
@@ -118,6 +132,16 @@ function App() {
               <Route path="/app/stock/*" element={
                 <PrivateRoute>
                   <StockApp />
+                </PrivateRoute>
+              } />
+              <Route path="/app/comptafacile/*" element={
+                <PrivateRoute>
+                  <ComptaFacileApp />
+                </PrivateRoute>
+              } />
+              <Route path="/app/quincaillerie/*" element={
+                <PrivateRoute>
+                  <QuincaillerieProApp />
                 </PrivateRoute>
               } />
             </Routes>

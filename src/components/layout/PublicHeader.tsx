@@ -1,42 +1,59 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Layers } from 'lucide-react';
 
 const PublicHeader: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigation = [
     { name: 'Accueil', href: '/' },
-    { name: 'Solutions', href: '#solutions' },
-    { name: 'Tarifs', href: '#pricing' },
-    { name: 'Réalisations', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Solutions', href: '/#solutions' },
+    { name: 'Tarifs', href: '/tarifs' },
+    { name: 'Réalisations', href: '/#portfolio' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-background/95 backdrop-blur-lg border-b border-stroke' : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                <Layers className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-r from-primary to-violet-500 rounded-lg flex items-center justify-center">
+                <Layers className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">SaasPlatform</span>
+              <span className="text-2xl font-bold font-display text-copy-primary">LolaTech</span>
             </Link>
           </div>
 
           {/* Navigation Desktop */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <a
+              <NavLink
                 key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                to={item.href}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${
+                    isActive ? 'text-blue-500' : 'text-copy-secondary hover:text-blue-500'
+                  }`
+                }
               >
                 {item.name}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
@@ -44,13 +61,13 @@ const PublicHeader: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/login"
-              className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+              className="text-copy-secondary hover:text-blue-500 text-sm font-medium transition-colors"
             >
               Connexion
             </Link>
             <Link
               to="/register"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
             >
               Commencer
             </Link>
@@ -60,7 +77,7 @@ const PublicHeader: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2"
+              className="text-copy-secondary hover:text-blue-500 p-2"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -69,29 +86,33 @@ const PublicHeader: React.FC = () => {
 
         {/* Menu mobile ouvert */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t border-stroke">
             <nav className="flex flex-col space-y-2">
               {navigation.map((item) => (
-                <a
+                <NavLink
                   key={item.name}
-                  href={item.href}
-                  className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `px-3 py-2 text-sm font-medium ${
+                      isActive ? 'text-blue-500' : 'text-copy-secondary hover:text-blue-500'
+                    }`
+                  }
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </NavLink>
               ))}
               <div className="pt-4 flex flex-col space-y-2">
                 <Link
                   to="/login"
-                  className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                  className="text-copy-secondary hover:text-blue-500 px-3 py-2 text-sm font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Connexion
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-medium text-center"
+                  className="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg text-sm font-medium text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Commencer
