@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { 
@@ -16,7 +16,7 @@ import {
 const DashboardHome: React.FC = () => {
   const { user } = useAuth();
 
-  const availableSolutions = [
+  const availableSolutions = useMemo(() => [
     {
       id: 'pharmacy',
       name: 'Gestion de Pharmacie',
@@ -53,17 +53,23 @@ const DashboardHome: React.FC = () => {
       price: '69€/mois',
       features: ['Inventaire', 'Alertes', 'Rapports']
     }
-  ];
+  ], []);
 
-  const subscribedSolutions = availableSolutions.filter(solution => 
-    user?.subscriptions.includes(solution.id)
+  const subscribedSolutions = useMemo(() => 
+    availableSolutions.filter(solution => 
+      user?.subscriptions.includes(solution.id)
+    ), 
+    [availableSolutions, user?.subscriptions]
   );
 
-  const unsubscribedSolutions = availableSolutions.filter(solution => 
-    !user?.subscriptions.includes(solution.id)
+  const unsubscribedSolutions = useMemo(() => 
+    availableSolutions.filter(solution => 
+      !user?.subscriptions.includes(solution.id)
+    ),
+    [availableSolutions, user?.subscriptions]
   );
 
-  const stats = [
+  const stats = useMemo(() => [
     {
       name: 'Solutions actives',
       value: subscribedSolutions.length.toString(),
@@ -88,7 +94,7 @@ const DashboardHome: React.FC = () => {
       icon: Users,
       color: 'text-orange-600'
     }
-  ];
+  ], [subscribedSolutions.length]);
 
   return (
     <div className="space-y-8">
@@ -237,4 +243,4 @@ const DashboardHome: React.FC = () => {
   );
 };
 
-export default DashboardHome;
+export default React.memo(DashboardHome);

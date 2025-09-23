@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Mail, Phone, MapPin } from 'lucide-react';
+import { Layers, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -19,6 +19,24 @@ const Footer: React.FC = () => {
               LolaTech, la solution complète pour digitaliser votre entreprise. 
               Solutions personnalisées pour tous les secteurs d'activité.
             </p>
+            {/* Social Icons */}
+            <div className="flex justify-center md:justify-start space-x-4 mb-6">
+              <a href="#" className="text-copy-secondary hover:text-primary transition-transform duration-300 hover:scale-110">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-copy-secondary hover:text-primary transition-transform duration-300 hover:scale-110">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-copy-secondary hover:text-primary transition-transform duration-300 hover:scale-110">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-copy-secondary hover:text-primary transition-transform duration-300 hover:scale-110">
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a href="https://wa.me/243823263196" target="_blank" rel="noopener noreferrer" className="text-copy-secondary hover:text-primary transition-transform duration-300 hover:scale-110">
+                <Phone className="w-5 h-5" />
+              </a>
+            </div>
             <div className="space-y-2">
               <div className="flex items-center justify-center md:justify-start space-x-2 text-sm">
                 <Mail className="w-4 h-4" />
@@ -39,10 +57,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-copy-primary mb-4">Solutions</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Gestion Pharmacie</a></li>
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Gestion École</a></li>
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Gestion Restaurant</a></li>
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Gestion Stock</a></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Gestion Pharmacie</a></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Gestion École</a></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Gestion Restaurant</a></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Gestion Stock</a></li>
             </ul>
           </div>
 
@@ -50,10 +68,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-copy-primary mb-4">Support</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Documentation</a></li>
-              <li><a href="#" className="hover:text-copy-primary transition-colors">Centre d'aide</a></li>
-              <li><Link to="/login" className="hover:text-copy-primary transition-colors">Connexion</Link></li>
-              <li><Link to="/register" className="hover:text-copy-primary transition-colors">Inscription</Link></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Documentation</a></li>
+              <li><a href="#" className="hover:text-copy-primary transition-colors duration-300">Centre d'aide</a></li>
+              <li><Link to="/login" className="hover:text-copy-primary transition-colors duration-300">Connexion</Link></li>
+              <li><Link to="/register" className="hover:text-copy-primary transition-colors duration-300">Inscription</Link></li>
             </ul>
           </div>
         </div>
@@ -64,13 +82,13 @@ const Footer: React.FC = () => {
               © 2024 SaasPlatform. Tous droits réservés.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-sm hover:text-copy-primary transition-colors">
+              <a href="#" className="text-sm hover:text-copy-primary transition-colors duration-300">
                 Mentions légales
               </a>
-              <a href="#" className="text-sm hover:text-copy-primary transition-colors">
+              <a href="#" className="text-sm hover:text-copy-primary transition-colors duration-300">
                 Politique de confidentialité
               </a>
-              <a href="#" className="text-sm hover:text-copy-primary transition-colors">
+              <a href="#" className="text-sm hover:text-copy-primary transition-colors duration-300">
                 CGU
               </a>
             </div>

@@ -138,13 +138,12 @@ const PricingPage: React.FC = () => {
         {/* Hook Texts */}
         <div className="max-w-4xl mx-auto text-center mb-12">
           <div className="bg-surface border border-stroke rounded-lg p-6">
-            <ul className="space-y-3 text-white">
-              <li>"Nos tarifs sont flexibles : les montants affichés peuvent être ajustés selon le mode de paiement et vos besoins spécifiques."</li>
-              <li>"Les prix indiqués sont à titre de référence. Contactez-nous pour discuter d’une offre personnalisée adaptée à votre budget et à votre façon de payer."</li>
-              <li>"Chaque projet est unique, nos tarifs aussi ! Parlons-en ensemble pour trouver la formule la mieux adaptée à vos moyens de paiement."</li>
-              <li>"Les montants affichés sont négociables en fonction de la durée d’abonnement ou du mode de règlement choisi."</li>
-              <li>"Vous avez un besoin particulier ou un autre mode de paiement ? Nos tarifs peuvent être revus pour mieux correspondre à vos attentes."</li>
-            </ul>
+            <p className="text-lg text-white leading-relaxed">
+              <strong className="font-semibold text-primary">Nos tarifs s’adaptent à vos besoins :</strong><br /><br />
+              Pour les <strong className="font-semibold">entreprises structurées</strong>, profitez de nos offres Premium à partir de <strong className="font-semibold">200 $/an</strong> ou <strong className="font-semibold">25 $/mois</strong> avec support complet et sauvegarde cloud.<br /><br />
+              Pour les <strong className="font-semibold">petites entreprises et indépendants</strong>, bénéficiez d��une réduction spéciale : seulement <strong className="font-semibold">100 $/an</strong> ou <strong className="font-semibold">10 $/mois</strong>.<br /><br />
+              Chaque abonnement peut être ajusté selon votre mode de paiement ou vos besoins spécifiques. <a href="#contact" className="font-semibold text-primary hover:underline">Contactez-nous pour un devis personnalisé.</a>
+            </p>
           </div>
         </div>
 

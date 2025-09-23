@@ -15,9 +15,11 @@ const PublicHeader: React.FC = () => {
   }, []);
 
   const navigation = [
-    { name: 'Accueil', href: '/' },
+    { name: 'Accueil', href: '/#' },
     { name: 'Solutions', href: '/#solutions' },
     { name: 'Tarifs', href: '/tarifs' },
+    { name: 'Fichiers Excel Pro', href: '/excel-files' },
+    { name: 'À propos', href: '/about' },
     { name: 'Réalisations', href: '/#portfolio' },
     { name: 'Contact', href: '/#contact' },
   ];
@@ -25,7 +27,7 @@ const PublicHeader: React.FC = () => {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-lg border-b border-stroke' : 'bg-transparent'
+        isScrolled ? 'bg-slate-100/95 backdrop-blur-lg border-b border-stroke' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +38,7 @@ const PublicHeader: React.FC = () => {
               <div className="w-10 h-10 bg-gradient-to-r from-primary to-violet-500 rounded-lg flex items-center justify-center">
                 <Layers className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold font-display text-copy-primary">LolaTech</span>
+              <span className="text-2xl font-bold font-display text-gray-900">LolaTech</span>
             </Link>
           </div>
 

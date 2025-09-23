@@ -8,6 +8,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 const HomePage = lazy(() => import('./pages/public/HomePage'));
 const PricingPage = lazy(() => import('./pages/public/PricingPage'));
 const QuotePage = lazy(() => import('./pages/public/QuotePage'));
+const ExcelFilesPage = lazy(() => import('./pages/public/ExcelFilesPage')); // Ajout de la nouvelle page
+const AboutPage = lazy(() => import('./pages/public/AboutPage'));
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/auth/ForgotPasswordPage'));
@@ -48,14 +50,25 @@ function App() {
                   <HomePage />
                 </PublicLayout>
               } />
-              <Route path="/pricing" element={
+              <Route path="/tarifs" element={
                 <PublicLayout>
                   <PricingPage />
                 </PublicLayout>
               } />
+              <Route path="/pricing" element={<Navigate to="/tarifs" />} />
               <Route path="/devis" element={
                 <PublicLayout>
                   <QuotePage />
+                </PublicLayout>
+              } />
+              <Route path="/excel-files" element={
+                <PublicLayout>
+                  <ExcelFilesPage />
+                </PublicLayout>
+              } />
+              <Route path="/about" element={
+                <PublicLayout>
+                  <AboutPage />
                 </PublicLayout>
               } />
               

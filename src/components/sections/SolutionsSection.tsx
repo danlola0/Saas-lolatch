@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SolutionCard from '../ui/SolutionCard';
 import { Pill, GraduationCap, UtensilsCrossed, Package, ShoppingCart, Car, Home, Users, FileText, Wrench } from 'lucide-react';
@@ -54,6 +54,14 @@ const SolutionsSection: React.FC = () => {
       color: 'yellow'
     },
     {
+      id: 'gestion-shop',
+      title: 'Gestion de shop multi utilisateurs',
+      description: 'Gérez votre boutique, stocks et ventes avec des accès dédiés pour vos collaborateurs.',
+      icon: ShoppingCart,
+      features: ['Gestion des produits', 'Suivi des stocks', 'Point de vente (POS)', 'Gestion des utilisateurs'],
+      color: 'gray'
+    },
+    {
       id: 'e-commerce',
       title: 'E-Commerce',
       description: 'Plateforme de vente en ligne complète avec gestion des produits et commandes.',
@@ -87,6 +95,34 @@ const SolutionsSection: React.FC = () => {
     }
   ];
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    const startScrolling = () => {
+      intervalId = setInterval(() => {
+        if (!isHovered) {
+          const scrollAmount = 300; // Width of one card
+          if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth) {
+            scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
+        }
+      }, 3000); // Change card every 3 seconds
+    };
+
+    startScrolling();
+
+    return () => clearInterval(intervalId);
+  }, [isHovered]);
+
+
   return (
     <section id="solutions" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,17 +136,24 @@ const SolutionsSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          ref={scrollContainerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] md:auto-cols-[31%] lg:auto-cols-[30%] gap-x-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 scrollbar-hide -mx-4 px-4"
+        >
           {solutions.map((solution, index) => (
-            <Link to={`/pricing#${solution.id || ''}`} key={index}>
-              <SolutionCard
-                title={solution.title}
-                description={solution.description}
-                icon={solution.icon}
-                features={solution.features}
-                color={solution.color}
-              />
-            </Link>
+            <div key={index} className="snap-center">
+              <Link to={`/tarifs#${solution.id || ''}`} className="h-full flex">
+                <SolutionCard
+                  title={solution.title}
+                  description={solution.description}
+                  icon={solution.icon}
+                  features={solution.features}
+                  color={solution.color}
+                />
+              </Link>
+            </div>
           ))}
         </div>
 

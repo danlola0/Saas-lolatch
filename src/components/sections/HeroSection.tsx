@@ -55,11 +55,11 @@ const HeroSection: React.FC = () => {
             {/* Stats */}
             <div className="mt-12 grid grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-copy-primary">500+</div>
+                <div className="text-3xl font-bold text-copy-primary">10+</div>
                 <div className="text-sm text-copy-secondary">Entreprises</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-copy-primary">50k+</div>
+                <div className="text-3xl font-bold text-copy-primary">2k+</div>
                 <div className="text-sm text-copy-secondary">Utilisateurs</div>
               </div>
               <div>

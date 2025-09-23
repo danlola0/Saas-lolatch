@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://danlolatechservice.web.app/sitemap.xml
