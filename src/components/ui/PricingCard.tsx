@@ -83,7 +83,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   const period = billingCycle === 'annually' ? '/an' : '/mois';
 
   return (
-    <div id={id} className="bg-surface rounded-2xl border border-stroke p-6 flex flex-col h-full">
+    <div id={id} className="bg-surface rounded-2xl border border-stroke p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/40">
       {/* Header */}
       <div className="flex items-center space-x-4 mb-6">
         <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${gradientClass} flex items-center justify-center flex-shrink-0`}>

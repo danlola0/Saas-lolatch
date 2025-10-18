@@ -30,7 +30,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
   const gradientClass = colorClasses[color as keyof typeof colorClasses] || colorClasses.blue;
 
   return (
-    <div className="group bg-surface rounded-xl border border-stroke p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+    <div className="group bg-surface rounded-xl border border-stroke p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/40">
       {/* Icon */}
       <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${gradientClass} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
         <Icon className="w-6 h-6 text-white" />

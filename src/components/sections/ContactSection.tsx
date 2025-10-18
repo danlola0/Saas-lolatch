@@ -47,13 +47,13 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-16 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Contactez nos experts
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Prêt à transformer votre entreprise ? Notre équipe est là pour vous accompagner 
             dans votre projet de digitalisation.
           </p>
@@ -68,21 +68,21 @@ const ContactSection: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
-                  <Mail className="w-6 h-6 text-blue-600 mt-1" />
+                  <Mail className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600">daniellolayongo@gmail.com</div>
+                    <div className="text-gray-600 break-words">daniellolayongo@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <Phone className="w-6 h-6 text-blue-600 mt-1" />
+                  <Phone className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-gray-900">Téléphone</div>
                     <div className="text-gray-600">+243 823263196</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-blue-600 mt-1" />
+                  <MapPin className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-gray-900">Adresse</div>
                     <div className="text-gray-600">Commune lemba</div>
@@ -92,19 +92,19 @@ const ContactSection: React.FC = () => {
             </div>
 
             {/* Avantages */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
+            <div className="bg-white rounded-xl p-6 shadow-sm border">
               <h4 className="font-semibold text-gray-900 mb-4">Pourquoi nous choisir ?</h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <Clock className="w-4 h-4 text-green-500" />
+                  <Clock className="w-4 h-4 text-green-500 flex-shrink-0" />
                   <span className="text-sm text-gray-700">Réponse sous 2h</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Shield className="w-4 h-4 text-green-500" />
+                  <Shield className="w-4 h-4 text-green-500 flex-shrink-0" />
                   <span className="text-sm text-gray-700">Sécurité garantie</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Headphones className="w-4 h-4 text-green-500" />
+                  <Headphones className="w-4 h-4 text-green-500 flex-shrink-0" />
                   <span className="text-sm text-gray-700">Support 24/7</span>
                 </div>
               </div>
@@ -113,9 +113,9 @@ const ContactSection: React.FC = () => {
 
           {/* Formulaire de contact */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm p-8">
+            <div className="bg-white rounded-xl shadow-sm p-6 sm:p-8 border">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Nom complet *

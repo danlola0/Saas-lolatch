@@ -35,10 +35,10 @@ const ServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">Nos Services</h2>
-          <h2 className="mt-2 text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Des solutions pour chaque ambition
           </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-xl text-gray-600">
+          <p className="mt-4 max-w-3xl mx-auto text-lg sm:text-xl text-gray-600">
             Chez DanlolaTech Service, nous vous accompagnons avec des solutions technologiques complètes : logiciels sur mesure, sécurité, applications mobiles et formations.
           </p>
         </div>

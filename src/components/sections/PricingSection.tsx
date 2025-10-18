@@ -69,7 +69,7 @@ const PricingSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
           {plans.map((plan, index) => (
             <PricingCard key={index} {...plan} />
           ))}
@@ -80,7 +80,7 @@ const PricingSection: React.FC = () => {
           <h3 className="text-2xl font-bold text-center text-gray-900 mb-12">
             Questions fréquentes
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 max-w-4xl mx-auto">
             <div>
               <h4 className="font-semibold text-gray-900 mb-2">
                 Puis-je changer de plan à tout moment ?

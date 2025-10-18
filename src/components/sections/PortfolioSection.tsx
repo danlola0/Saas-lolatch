@@ -114,7 +114,7 @@ const PortfolioSection: React.FC = () => {
         </div>
 
         {/* Grille des cas d'usage */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {useCases.map((useCase, index) => (
             <UseCaseCard key={index} {...useCase} />
           ))}
@@ -127,30 +127,30 @@ const PortfolioSection: React.FC = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-auto md:h-[500px]">
             {/* Main Image */}
-            <div className="group h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
+            <div className="group h-64 md:h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
               <img src="/demos/Capture.PNG" alt="Realisation 1" className="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out group-hover:scale-110"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <h4 className="text-white text-2xl font-bold">Pharma Plus</h4>
-                <p className="text-white/90">Gestion de pharmacie</p>
+              <div className="absolute bottom-0 left-0 p-4 md:p-6">
+                <h4 className="text-white text-lg md:text-2xl font-bold">Pharma Plus</h4>
+                <p className="text-white/90 text-sm md:text-base">Gestion de pharmacie</p>
               </div>
             </div>
             {/* Side Images */}
             <div className="grid grid-cols-1 gap-4 h-full">
-              <div className="group h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
+              <div className="group h-64 md:h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <img src="/demos/Capture1.PNG" alt="Realisation 2" className="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out group-hover:scale-110"/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <h4 className="text-white text-2xl font-bold">Educa Pro</h4>
-                  <p className="text-white/90">Gestion d'école</p>
+                <div className="absolute bottom-0 left-0 p-4 md:p-6">
+                  <h4 className="text-white text-lg md:text-2xl font-bold">Educa Pro</h4>
+                  <p className="text-white/90 text-sm md:text-base">Gestion d'école</p>
                 </div>
               </div>
-              <div className="group h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
+              <div className="group h-64 md:h-full w-full rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <img src="/demos/Capture5.PNG" alt="Realisation 3" className="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out group-hover:scale-110"/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <h4 className="text-white text-2xl font-bold">Gourmet Tech</h4>
-                  <p className="text-white/90">Gestion de restaurant</p>
+                <div className="absolute bottom-0 left-0 p-4 md:p-6">
+                  <h4 className="text-white text-lg md:text-2xl font-bold">Gourmet Tech</h4>
+                  <p className="text-white/90 text-sm md:text-base">Gestion de restaurant</p>
                 </div>
               </div>
             </div>
