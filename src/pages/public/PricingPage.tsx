@@ -1,159 +1,137 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import PricingCard from '../../components/ui/PricingCard';
-import { Pill, Wrench, FileText, Archive, Utensils, School } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Check, FlaskConical, Crown, Wrench, MessageSquare } from 'lucide-react';
+
+// Composant pour une carte de tarif individuelle
+const PlanCard = ({ icon: Icon, title, description, price, actionText, to, features, isFeatured }) => (
+  <div className={`relative bg-white rounded-2xl p-8 flex flex-col transition-transform transform hover:-translate-y-2 duration-300 ${isFeatured ? 'shadow-2xl border-2 border-blue-500' : 'shadow-lg'}`}>
+    {isFeatured && (
+      <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+        <span className="bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+          Le plus populaire
+        </span>
+      </div>
+    )}
+    
+    <div className="flex-grow">
+      <div className="flex items-center gap-4 mb-4">
+        <Icon className={`w-10 h-10 ${isFeatured ? 'text-blue-600' : 'text-gray-700'}`} />
+        <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+      </div>
+      <p className="text-gray-600 mb-6 h-16">{description}</p>
+      
+      <div className="mb-8">
+        <p className="text-4xl font-bold text-gray-900">
+          {price}
+          {title === 'Pro' && <span className="text-lg font-normal text-gray-500">/mois</span>}
+        </p>
+      </div>
+
+      <ul className="space-y-3 text-gray-700 mb-8">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-center gap-3">
+            <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <Link
+      to={to}
+      className={`w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${
+        isFeatured
+          ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+          : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+      }`}
+    >
+      {actionText}
+    </Link>
+  </div>
+);
 
 const PricingPage: React.FC = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }, [location]);
-
   const plans = [
     {
-      id: 'gestion-de-pharmacie',
-      title: 'Gestion de Pharmacie',
-      icon: Pill,
-      color: 'blue',
-      saas: {
-        price: 25,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Mises à jour automatiques'],
-      },
-      local: {
-        price: 9,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Licence à vie'],
-      },
+      icon: FlaskConical,
+      title: 'Découverte',
+      description: 'Idéal pour explorer nos fonctionnalités avec une version démo gratuite.',
+      price: 'Gratuit',
+      actionText: 'Essayer maintenant',
+      to: '/register',
+      features: ['1 App Démo', 'Fonctionnalités limitées', 'Pas de carte de crédit requise', 'Support par email'],
+      isFeatured: false,
     },
     {
-      id: 'quincaillerie-pro',
-      title: 'Quincaillerie Pro',
+      icon: Crown,
+      title: 'Pro',
+      description: 'La solution complète pour gérer votre activité avec une de nos applications.',
+      price: '10 $',
+      actionText: 'Choisir ce plan',
+      to: '/register',
+      features: ['Accès complet à 1 app', 'Mises à jour incluses', 'Sauvegarde Cloud sécurisée', 'Support prioritaire 24/7'],
+      isFeatured: true,
+    },
+    {
       icon: Wrench,
-      color: 'orange',
-      saas: {
-        price: 30,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Gestion multi-dépôts'],
-      },
-      local: {
-        price: 12,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Factures et devis illimités'],
-      },
-    },
-    {
-      id: 'gestion-de-stock',
-      title: 'Gestion de Stock',
-      icon: Archive,
-      color: 'purple',
-      saas: {
-        price: 20,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Suivi des mouvements de stock'],
-      },
-      local: {
-        price: 8,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Inventaire facile'],
-      },
-    },
-    {
-      id: 'compta-facile',
-      title: 'Compta Facile',
-      icon: FileText,
-      color: 'green',
-      saas: {
-        price: 35,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Assistant IA fiscal'],
-      },
-      local: {
-        price: 15,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Rapports financiers complets'],
-      },
-    },
-    {
-      id: 'resto-pro',
-      title: 'Resto Pro',
-      icon: Utensils,
-      color: 'red',
-      saas: {
-        price: 40,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Gestion des tables et commandes'],
-      },
-      local: {
-        price: 18,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Menu personnalisable'],
-      },
-    },
-    {
-      id: 'school-manager',
-      title: 'School Manager',
-      icon: School,
-      color: 'yellow',
-      saas: {
-        price: 50,
-        features: ['Accessible partout', 'Sauvegarde cloud', 'Support premium', 'Portail élèves et parents'],
-      },
-      local: {
-        price: 22,
-        features: ['Installation sur votre PC', 'Fonctionne hors-ligne', 'Support de base', 'Gestion des notes et absences'],
-      },
+      title: 'Sur mesure',
+      description: 'Une application entièrement conçue et développée pour vos besoins uniques.',
+      price: 'Sur devis',
+      actionText: 'Commander maintenant',
+      to: '/quote',
+      features: ['Développement dédié', 'Fonctionnalités illimitées', 'Intégrations personnalisées', 'Contrat de maintenance'],
+      isFeatured: false,
     },
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold font-display text-copy-primary mb-4">
-            Des tarifs flexibles pour chaque besoin
-          </h2>
-          <p className="text-lg text-copy-secondary max-w-3xl mx-auto">
-            Choisissez la solution qui vous convient, en ligne pour la flexibilité ou locale pour le contrôle.
+    <div className="bg-[#F1F5F9] min-h-screen py-20 relative overflow-hidden">
+      {/* Forme décorative en arrière-plan */}
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-200/30 rounded-full filter blur-3xl opacity-50"></div>
+        <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-indigo-200/30 rounded-full filter blur-3xl opacity-50"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Titre */}
+        <div className="text-center mb-20">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-4">
+            Une solution pour chaque ambition
+          </h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Choisissez le plan qui correspond à vos besoins ou contactez-nous pour créer l'outil parfait pour votre entreprise.
           </p>
         </div>
 
-        {/* Toggle Mensuel/Annuel */}
-        <div className="flex justify-center items-center space-x-4 mb-12">
-          <span className={`font-medium ${billingCycle === 'monthly' ? 'text-copy-primary' : 'text-copy-secondary'}`}>
-            Mensuel
-          </span>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={billingCycle === 'annually'}
-              onChange={() => setBillingCycle(billingCycle === 'monthly' ? 'annually' : 'monthly')}
-            />
-            <div className="w-11 h-6 bg-surface rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-          </label>
-          <span className={`font-medium ${billingCycle === 'annually' ? 'text-copy-primary' : 'text-copy-secondary'}`}>
-            Annuel <span className="text-green-400 text-sm">(-20%)</span>
-          </span>
-        </div>
-
-        {/* Hook Texts */}
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <div className="bg-surface border border-stroke rounded-lg p-6">
-            <p className="text-lg text-white leading-relaxed">
-              <strong className="font-semibold text-primary">Nos tarifs s’adaptent à vos besoins :</strong><br /><br />
-              Pour les <strong className="font-semibold">entreprises structurées</strong>, profitez de nos offres Premium à partir de <strong className="font-semibold">200 $/an</strong> ou <strong className="font-semibold">25 $/mois</strong> avec support complet et sauvegarde cloud.<br /><br />
-              Pour les <strong className="font-semibold">petites entreprises et indépendants</strong>, bénéficiez d��une réduction spéciale : seulement <strong className="font-semibold">100 $/an</strong> ou <strong className="font-semibold">10 $/mois</strong>.<br /><br />
-              Chaque abonnement peut être ajusté selon votre mode de paiement ou vos besoins spécifiques. <a href="#contact" className="font-semibold text-primary hover:underline">Contactez-nous pour un devis personnalisé.</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Cartes de tarifs */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {plans.map((plan) => (
-            <PricingCard key={plan.id} {...plan} billingCycle={billingCycle} />
+            <PlanCard key={plan.title} {...plan} />
           ))}
         </div>
+
+        {/* Message additionnel */}
+        <div className="text-center mt-20">
+          <p className="text-lg text-gray-600">
+            Pour toute demande spéciale, contactez-nous directement sur{' '}
+            <a href="https://wa.me/243823263196" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 hover:underline">
+              WhatsApp
+            </a>.
+          </p>
+        </div>
       </div>
-    </section>
+
+      {/* Bouton WhatsApp Flottant */}
+      <a
+        href="https://wa.me/243823263196"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-110 z-20"
+        aria-label="Contacter sur WhatsApp"
+      >
+        <MessageSquare className="w-8 h-8" />
+      </a>
+    </div>
   );
 };
 
