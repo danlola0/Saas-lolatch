@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Layers, Mail, Lock, User } from 'lucide-react';
+import { Eye, EyeOff, Layers, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 const RegisterPage: React.FC = () => {
@@ -37,7 +37,16 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+      {/* Bouton Retour */}
+      <Link 
+        to="/tarifs" 
+        className="absolute top-8 left-8 flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors z-10"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span>Retour aux tarifs</span>
+      </Link>
+
       <div className="max-w-md w-full space-y-8">
         {/* Logo */}
         <div className="text-center">

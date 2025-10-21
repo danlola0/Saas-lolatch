@@ -4,7 +4,7 @@ import { Check, FlaskConical, Crown, Wrench, MessageSquare } from 'lucide-react'
 
 // Composant pour une carte de tarif individuelle
 const PlanCard = ({ icon: Icon, title, description, price, actionText, to, features, isFeatured }) => (
-  <div className={`relative bg-white rounded-2xl p-8 flex flex-col transition-transform transform hover:-translate-y-2 duration-300 ${isFeatured ? 'shadow-2xl border-2 border-blue-500' : 'shadow-lg'}`}>
+  <div className={`relative bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 flex flex-col transition-transform transform hover:-translate-y-2 duration-300 ${isFeatured ? 'shadow-2xl shadow-blue-500/20 border-blue-500' : 'shadow-lg'}`}>
     {isFeatured && (
       <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
         <span className="bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
@@ -15,19 +15,19 @@ const PlanCard = ({ icon: Icon, title, description, price, actionText, to, featu
     
     <div className="flex-grow">
       <div className="flex items-center gap-4 mb-4">
-        <Icon className={`w-10 h-10 ${isFeatured ? 'text-blue-600' : 'text-gray-700'}`} />
-        <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+        <Icon className={`w-10 h-10 ${isFeatured ? 'text-blue-500' : 'text-slate-300'}`} />
+        <h3 className="text-2xl font-bold text-white">{title}</h3>
       </div>
-      <p className="text-gray-600 mb-6 h-16">{description}</p>
+      <p className="text-slate-400 mb-6 h-16">{description}</p>
       
       <div className="mb-8">
-        <p className="text-4xl font-bold text-gray-900">
+        <p className="text-4xl font-bold text-white">
           {price}
-          {title === 'Pro' && <span className="text-lg font-normal text-gray-500">/mois</span>}
+          {title === 'Pro' && <span className="text-lg font-normal text-slate-400">/mois</span>}
         </p>
       </div>
 
-      <ul className="space-y-3 text-gray-700 mb-8">
+      <ul className="space-y-3 text-slate-300 mb-8">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center gap-3">
             <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -42,7 +42,7 @@ const PlanCard = ({ icon: Icon, title, description, price, actionText, to, featu
       className={`w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${
         isFeatured
           ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
-          : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+          : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
       }`}
     >
       {actionText}
@@ -78,27 +78,27 @@ const PricingPage: React.FC = () => {
       description: 'Une application entièrement conçue et développée pour vos besoins uniques.',
       price: 'Sur devis',
       actionText: 'Commander maintenant',
-      to: '/quote',
+      to: '/devis',
       features: ['Développement dédié', 'Fonctionnalités illimitées', 'Intégrations personnalisées', 'Contrat de maintenance'],
       isFeatured: false,
     },
   ];
 
   return (
-    <div className="bg-[#F1F5F9] min-h-screen py-20 relative overflow-hidden">
+    <div className="bg-[#0F172A] min-h-screen py-20 relative overflow-hidden">
       {/* Forme décorative en arrière-plan */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-200/30 rounded-full filter blur-3xl opacity-50"></div>
-        <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-indigo-200/30 rounded-full filter blur-3xl opacity-50"></div>
+      <div className="absolute inset-0 z-0">
+        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-900/50 rounded-full filter blur-3xl opacity-50"></div>
+        <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-indigo-900/50 rounded-full filter blur-3xl opacity-50"></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Titre */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-4">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
             Une solution pour chaque ambition
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
             Choisissez le plan qui correspond à vos besoins ou contactez-nous pour créer l'outil parfait pour votre entreprise.
           </p>
         </div>
@@ -112,9 +112,9 @@ const PricingPage: React.FC = () => {
 
         {/* Message additionnel */}
         <div className="text-center mt-20">
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-slate-400">
             Pour toute demande spéciale, contactez-nous directement sur{' '}
-            <a href="https://wa.me/243823263196" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 hover:underline">
+            <a href="https://wa.me/243823263196" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:underline">
               WhatsApp
             </a>.
           </p>

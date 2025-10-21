@@ -1,16 +1,24 @@
 import React from 'react';
-import { Bell, Search, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Bell, Search, User, Home } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 const DashboardHeader: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
-    <header className="bg-slate-100 shadow-sm border-b border-gray-200 sticky top-0 z-40">
+    <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
       <div className="px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <Link 
+              to="/" 
+              className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+            >
+              <Home className="w-4 h-4 text-gray-600" />
+              <span className="text-sm font-medium text-gray-700">Retour au site</span>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">
