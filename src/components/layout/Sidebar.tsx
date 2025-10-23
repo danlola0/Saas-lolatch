@@ -9,7 +9,11 @@ import {
   Settings
 } from 'lucide-react';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const location = useLocation();
 
   const menuItems = [
@@ -48,7 +52,14 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-64 bg-white shadow-sm border-r border-gray-200 fixed left-0 top-16 h-full">
+    <aside 
+      className={`
+        w-64 bg-slate-800 border-r border-slate-700 fixed left-0 top-0 h-full pt-16 z-40
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        lg:translate-x-0
+      `}
+    >
       <nav className="p-4">
         <ul className="space-y-2">
           {menuItems.map((item) => {
@@ -59,8 +70,8 @@ const Sidebar: React.FC = () => {
                   to={item.href}
                   className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'bg-blue-600/20 text-white'
+                      : 'text-slate-400 hover:bg-slate-700 hover:text-white'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -72,10 +83,10 @@ const Sidebar: React.FC = () => {
         </ul>
 
         <div className="pt-8">
-          <div className="border-t border-gray-200 pt-4">
+          <div className="border-t border-slate-700 pt-4">
             <Link
               to="#"
-              className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-lg transition-colors"
+              className="flex items-center space-x-3 px-3 py-2 text-sm font-medium text-slate-400 hover:bg-slate-700 hover:text-white rounded-lg transition-colors"
             >
               <Settings className="w-5 h-5" />
               <span>Paramètres</span>

@@ -58,7 +58,7 @@ const PricingPage: React.FC = () => {
       description: 'Idéal pour explorer nos fonctionnalités avec une version démo gratuite.',
       price: 'Gratuit',
       actionText: 'Essayer maintenant',
-      to: '/register',
+      to: '/demo',
       features: ['1 App Démo', 'Fonctionnalités limitées', 'Pas de carte de crédit requise', 'Support par email'],
       isFeatured: false,
     },

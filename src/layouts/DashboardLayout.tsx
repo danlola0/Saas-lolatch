@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardHeader from '../components/layout/DashboardHeader';
 import Sidebar from '../components/layout/Sidebar';
 
@@ -7,12 +7,14 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <DashboardHeader />
+    <div className="min-h-screen bg-slate-900 text-white">
+      <DashboardHeader onMenuClick={() => setSidebarOpen(!isSidebarOpen)} />
       <div className="flex">
-        <Sidebar />
-        <main className="flex-1 ml-64 p-6">
+        <Sidebar isOpen={isSidebarOpen} />
+        <main className="flex-1 lg:ml-64 p-6 mt-16">
           {children}
         </main>
       </div>
