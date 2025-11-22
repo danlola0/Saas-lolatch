@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
 import DashboardLayout from './layouts/DashboardLayout';
@@ -54,6 +54,20 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 function App() {
+  useEffect(() => {
+    const splashScreen = document.getElementById('splash-screen');
+    if (splashScreen) {
+      // Simulate loading time
+      setTimeout(() => {
+        splashScreen.classList.add('loaded');
+        // Optional: remove from DOM after transition
+        setTimeout(() => {
+          splashScreen.style.display = 'none';
+        }, 500); // Match CSS transition duration
+      }, 1500); // Minimum splash screen time
+    }
+  }, []);
+
   return (
     <AuthProvider>
       <Router>

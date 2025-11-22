@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Layers } from 'lucide-react';
 
+// --- Fonctions de pré-chargement ---
+const preloadPricing = () => import('../../pages/public/PricingPage');
+const preloadExcel = () => import('../../pages/public/ExcelFilesPage');
+const preloadAbout = () => import('../../pages/public/AboutPage');
+const preloadLogin = () => import('../../pages/auth/LoginPage');
+const preloadRegister = () => import('../../pages/auth/RegisterPage');
+
 const PublicHeader: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,9 +24,9 @@ const PublicHeader: React.FC = () => {
   const navigation = [
     { name: 'Accueil', href: '/#' },
     { name: 'Solutions', href: '/#solutions' },
-    { name: 'Tarifs', href: '/tarifs' },
-    { name: 'Fichiers Excel Pro', href: '/excel-files' },
-    { name: 'À propos', href: '/about' },
+    { name: 'Tarifs', href: '/tarifs', preload: preloadPricing },
+    { name: 'Fichiers Excel Pro', href: '/excel-files', preload: preloadExcel },
+    { name: 'À propos', href: '/about', preload: preloadAbout },
     { name: 'Réalisations', href: '/#portfolio' },
     { name: 'Contact', href: '/#contact' },
   ];
@@ -48,6 +55,7 @@ const PublicHeader: React.FC = () => {
               <NavLink
                 key={item.name}
                 to={item.href}
+                onMouseEnter={item.preload}
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors ${
                     isActive ? 'text-blue-500' : 'text-copy-secondary hover:text-blue-500'
@@ -63,12 +71,14 @@ const PublicHeader: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/login"
+              onMouseEnter={preloadLogin}
               className="text-copy-secondary hover:text-blue-500 text-sm font-medium transition-colors"
             >
               Connexion
             </Link>
             <Link
               to="/register"
+              onMouseEnter={preloadRegister}
               className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
             >
               Commencer

@@ -1,0 +1,42 @@
+set GEMINI_API_KEY=AIzaSyAjtYZufAEOz9Ba7LmzrHHEasq1CJFXtp4
+
+
+set GEMINI_API_KEY=AIzaSyA4Z5YMHZsuvq0XqKJBE4ROqrIuveE3564
+
+AIzaSyC_xxfI2aEmczWnvp8-zBpJhSlNkoP3sY8
+
+AIzaSyAmKG0yVYkVPTzGK1ZxOpf5NcEbSjf7amc
+
+
+
+
+
+
+
+match /partenaires/{docId} {
+      allow read, write: if isMember(request.method == 'create' ? request.resource.data : resource.data);
+    }
+
+
+
+
+
+
+Étape 3 : Configuration de la base de données (Action de votre part)
+
+  La configuration de base est terminée. Maintenant, vous devez activer la base de données Firestore.
+
+
+   1. Rendez-vous sur la console Firebase (https://console.firebase.google.com/project/lolatech-756b2/firestore).
+   2. Cliquez sur "Créer une base de données".
+   3. Choisissez de démarrer en "mode test". Cela nous permettra de lire et écrire des données sans configuration de sécurité complexe
+      pour le moment.
+   4. Choisissez un emplacement pour vos serveurs (celui par défaut est généralement un bon choix).
+   5. Cliquez sur "Activer".
+
+
+  Une fois que c'est fait, je pourrai passer à l'étape suivante : la refactorisation de l'authentification et de la gestion des
+  données.
+
+
+  Dites-moi quand vous aurez activé Firestore.

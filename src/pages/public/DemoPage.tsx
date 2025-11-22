@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Briefcase, Stethoscope, Utensils, School, Warehouse, Building, Hospital, ShoppingCart, Bus, Hotel, Store, Wrench, Hammer, Landmark, Calendar, GraduationCap } from 'lucide-react';
+import { Briefcase, Stethoscope, Utensils, School, Warehouse, Building, Hospital, ShoppingCart, Bus, Hotel, Store, Wrench, Hammer, Landmark, Calendar, GraduationCap, ArrowLeft } from 'lucide-react';
+import UpgradeProBanner from '../../components/ui/UpgradeProBanner';
 
 const appDemos = [
   { name: 'Gestion de Pharmacie', path: '/demo/app/pharmacy', icon: <Stethoscope className="w-12 h-12 text-blue-400" /> },
@@ -24,9 +25,14 @@ const appDemos = [
 const DemoPage: React.FC = () => {
   return (
     <div className="bg-slate-900 text-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <UpgradeProBanner />
+        <div className="relative text-center mb-16">
+          <Link to="/" className="absolute top-0 left-0 flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Retour à l'accueil
+          </Link>
+          <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl pt-12">
             Démonstrations des Applications
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
@@ -34,7 +40,7 @@ const DemoPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {appDemos.map((app) => (
             <Link
               key={app.name}

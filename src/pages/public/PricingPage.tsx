@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, FlaskConical, Crown, Wrench, MessageSquare } from 'lucide-react';
+import PaymentPrompt from '../../components/ui/PaymentPrompt';
 
 // Composant pour une carte de tarif individuelle
-const PlanCard = ({ icon: Icon, title, description, price, actionText, to, features, isFeatured }) => (
+const PlanCard = ({ icon: Icon, title, description, price, actionText, to, features, isFeatured, onActionClick }) => (
   <div className={`relative bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 flex flex-col transition-transform transform hover:-translate-y-2 duration-300 ${isFeatured ? 'shadow-2xl shadow-blue-500/20 border-blue-500' : 'shadow-lg'}`}>
     {isFeatured && (
       <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
@@ -37,20 +38,35 @@ const PlanCard = ({ icon: Icon, title, description, price, actionText, to, featu
       </ul>
     </div>
     
-    <Link
-      to={to}
-      className={`w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${
-        isFeatured
-          ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
-          : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
-      }`}
-    >
-      {actionText}
-    </Link>
+    {to ? (
+      <Link
+        to={to}
+        className={`w-full block text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${
+          isFeatured
+            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+            : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+        }`}
+      >
+        {actionText}
+      </Link>
+    ) : (
+      <button
+        onClick={onActionClick}
+        className={`w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${
+          isFeatured
+            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+            : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+        }`}
+      >
+        {actionText}
+      </button>
+    )}
   </div>
 );
 
 const PricingPage: React.FC = () => {
+  const [isPaymentPromptOpen, setPaymentPromptOpen] = useState(false);
+
   const plans = [
     {
       icon: FlaskConical,
@@ -68,9 +84,9 @@ const PricingPage: React.FC = () => {
       description: 'La solution complète pour gérer votre activité avec une de nos applications.',
       price: '10 $',
       actionText: 'Choisir ce plan',
-      to: '/register',
       features: ['Accès complet à 1 app', 'Mises à jour incluses', 'Sauvegarde Cloud sécurisée', 'Support prioritaire 24/7'],
       isFeatured: true,
+      onActionClick: () => setPaymentPromptOpen(true),
     },
     {
       icon: Wrench,
@@ -86,14 +102,12 @@ const PricingPage: React.FC = () => {
 
   return (
     <div className="bg-[#0F172A] min-h-screen py-20 relative overflow-hidden">
-      {/* Forme décorative en arrière-plan */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-900/50 rounded-full filter blur-3xl opacity-50"></div>
         <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-indigo-900/50 rounded-full filter blur-3xl opacity-50"></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Titre */}
         <div className="text-center mb-20">
           <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
             Une solution pour chaque ambition
@@ -103,14 +117,12 @@ const PricingPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Cartes de tarifs */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {plans.map((plan) => (
             <PlanCard key={plan.title} {...plan} />
           ))}
         </div>
 
-        {/* Message additionnel */}
         <div className="text-center mt-20">
           <p className="text-lg text-slate-400">
             Pour toute demande spéciale, contactez-nous directement sur{' '}
@@ -121,7 +133,6 @@ const PricingPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Bouton WhatsApp Flottant */}
       <a
         href="https://wa.me/243823263196"
         target="_blank"
@@ -131,6 +142,12 @@ const PricingPage: React.FC = () => {
       >
         <MessageSquare className="w-8 h-8" />
       </a>
+      
+      <PaymentPrompt 
+        appName="Plan Pro" 
+        isOpen={isPaymentPromptOpen} 
+        onClose={() => setPaymentPromptOpen(false)} 
+      />
     </div>
   );
 };
